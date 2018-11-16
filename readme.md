@@ -27,7 +27,7 @@ Teams have been assigned for this project as follows. They are fixed - no switch
 1. **Both members** should review Chapter 21 in the textbook on Sets and Maps. While not required to get this project working, it is one way to substantially optimize the efficiency of your code. We will discuss this chapter in class, but it would not hurt to get a jump on the material.
 
 ## Step 1 - Import and Clone the Repo for your Team.
-1. **Both members** of your team will visit <a href='TODO'> this link</a>. This will import a repo for your team to Github. For this assignment, you will share the Github repo with your teammate. If you're the first member of your team to visit the link, you can create the team and import the repo - **make sure you create the right team**. If you're the second member to click the link, then **make sure** you join the right team.
+1. **Both members** of your team will visit <a href='https://classroom.github.com/g/aQpRBfop'> this link</a>. This will import a repo for your team to Github. For this assignment, you will share the Github repo with your teammate. If you're the first member of your team to visit the link, you can create the team and import the repo - **make sure you create the right team**. If you're the second member to click the link, then **make sure** you join the right team.
 2. **Both members** will clone the repository to your local machines. You will then each have a local repository that is linked to the shared repository, and can work on the code together.
 3. As a reference for how to use git, I suggest <a href='http://codingdomain.com/git/'>this site</a>, as it avoids some of the more complicated theory behind git and focuses on the bare minimum practicalities.
 
