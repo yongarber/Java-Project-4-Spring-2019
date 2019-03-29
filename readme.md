@@ -1,4 +1,4 @@
-# Project 4 - Due Nov 28 at 5pm
+# Project 4: Language
 In this project, you will use data files of social media posts to generate slogans about a topic. Given a corpus of social media tweets, you will use an external tokenizer class (provided for you) to separate each tweet into a collection of tokens. You will then use the tokens to compile a list of [*bigrams*](https://en.wikipedia.org/wiki/Bigram). From these bigrams, you will be able to construct acronym slogans that sound something like real speech. A large portion of this project is improving the efficiency of the approach from something that works, but takes a long time, to something that works much more efficiently. Ensure that you do the recommended background research early so that you can come up with a good plan for your code and therefore have to rewrite less of it.
 
 You are being provided with a data set of 5113 tweets in a file (*full-corpus.csv* - you may remember this set from a previous project). This is a comma-separated value file (.csv) which is a human-readable file type in which each line contains data. Pieces of data are separated by a comma, and for this data set, there are five pieces of data (i.e., fields) per line. You can open up the file in any text editor (e.g., Sublime) or even Excel if you want to look at the data directly (and you should always inspect your data!). The first line contains the name of the fields: "Topic" (what is this tweet about?), "Sentiment" (is this tweet positive about that topic, negative, neutral, or irrelevant?), "TweetId" (a unique ID used by Twitter - all of these will be different), "TweetDate" (when did this get tweeted?), and "TweetText" (what did the tweet actually say?). **Note - In this project, we will only be using the TweetText.**
@@ -10,21 +10,9 @@ Teams have been assigned for this project as follows. They are fixed - no switch
 
 > Even though you are working in teams, you **must ensure** that all team members contribute to the repository. Even if you are using paired programming, the same teammate cannot be the driver every time. Teams in which only one member commits code to the repo will be significantly penalized.
 
-1. Sabado  Miguel Enrico & Euodias  Gabriel
-1. Riley  Nathaniel & Shatokhin Arsenii
-1. Cohen-Trivinos Marc & Doiron Benjamin
-1. Vega-Aponte  Angelica & Li Jiaxin
-1. Xu Yifan & Hirsh  Olivia
-1. Teo-Diaz Marlon & Yang Zhenming
-1. Dicolandrea  Gennaro & Ngo  Julie
-1. Belson  Deirdre & Sleiman Sarah
-1. Chase II  Jeffrey & Wolfson Ash
-1. Gallagher  Cliff & Baron Anthony
-1. Meseck  Drew & Farley Liam
-
 ## Step 0 - Background Research.
 1. **Both members** should review Section 22.9 in the textbook on the Eight Queens problem using backtracking. It bears striking similarity to the requirements for this project.
-1. **Both members** should review Chapter 21 in the textbook on Sets and Maps. While not required to get this project working, it is one way to substantially optimize the efficiency of your code. We will discuss this chapter in class, but it would not hurt to get a jump on the material.
+1. **Both members** should review Chapter 21 in the textbook on Sets and Maps. We will discuss this chapter in class, but this project relies heavily on this chapter so keep your attention focused here.
 
 ## Step 1 - Import and Clone the Repo for your Team.
 1. **Both members** of your team will visit <a href='https://classroom.github.com/g/aQpRBfop'> this link</a>. This will import a repo for your team to Github. For this assignment, you will share the Github repo with your teammate. If you're the first member of your team to visit the link, you can create the team and import the repo - **make sure you create the right team**. If you're the second member to click the link, then **make sure** you join the right team.
