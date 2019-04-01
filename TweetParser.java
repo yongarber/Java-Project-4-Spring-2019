@@ -15,7 +15,7 @@ public class TweetParser{
       line = scanner.nextLine();
       String[] fields = line.split("\",\"");
 
-      List<String> twokens = null; //You need to call the correct method here.
+      List<String> twokens = twokenizer.twokenize(fields[4]); //You need to call the correct method here.
 
       //This is going to cause an error until you can call the correct method.
       twokens.forEach(e -> {
