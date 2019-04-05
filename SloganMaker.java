@@ -1,6 +1,7 @@
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class SloganMaker{
 
@@ -18,7 +19,19 @@ public class SloganMaker{
    * @param  acronym The acronym that will be used to create a slogan
    * @return         A list of Strings that satisfies the above constraints.
    */
-  public List<String> getSlogan(String acronym){
-    return null;
+  public TreeMap<Token, Integer> getSlogan(String acronym){
+    TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
+
+    for (Token token: tokens){
+      if (token.word.charAt(0) != '@' && !token.word.contains("http")){
+        if (options.containsKey(token)){
+          options.replace(token, options.get(token), options.get(token)+1);
+        }
+        else{
+          options.put(token, 1);
+        }
+      }
+    }
+    return options;
   }
 }
