@@ -20,27 +20,33 @@ public class SloganMaker{
    * @param  acronym The acronym that will be used to create a slogan
    * @return         A list of Strings that satisfies the above constraints.
    */
-  public TreeMap<Token, Integer> getSlogan(String acronym){
-    TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
-    TreeSet<Token[]> bigram = new TreeSet<Token[]>();
+  public TreeMap<Token, String> getSlogan(String acronym){
+   // TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
+    TreeMap<Token, String> bigram = new TreeMap<Token, String>();
 
     String[] eachletter = acronym.split(""); // we will use it in step 5
-    String[] Toke = (String[]) tokens.toArray();
-    for(int i=0; i <= tokens.size(); i++){
-      int j = i+1;
-      String[] Bigr =new String[] (Toke[i],Toke[j]); // I dont know why I have a problem here with the Toke. I tried to do Token instead of String but it didnt help.
-      bigram.add(Bigr);
-    }
-    for (Token token: tokens){ //Why do we need the .word. part in the lines under???
-      if (token.word.charAt(0) != '@' && !token.word.contains("http")){ // We can change the != "@" to things we want -> 'A'||'B'||'C'||'D'||'E'||'F'||'G'||'H'||'I'||'J'||'K'||'L'||'M'||'N'||'O'||'P'||'Q'||'R'||'S'||'T'||'U'||'V'||'X'||'W'||'Y'||'Z' This way we eliminate the issue you had with the language.
-        if (options.containsKey(token)){
-          options.replace(token, options.get(token), options.get(token)+1);
-        }
-        else{
-          options.put(token, 1);
+
+    ArrayList<Token> Toke = new ArrayList<>(tokens);
+    for(int i=0; i <= tokens.size(); i++) {
+      int j = i + 1;
+      if (Toke.get(i).word.charAt(0) != '@' && !Toke.get(i).word.contains("http")) {
+        if (bigram.containsKey(Toke.get(i))) {
+          bigram.replace(Toke.get(i), bigram.get(Toke.get(i)), (Toke.get(i).word + Toke.get(j).word));
+        } else {
+          bigram.put(Toke.get(i), Toke.get(j).word);
         }
       }
     }
-    return options;
+//    for (Token token: tokens){
+//      if (token.word.charAt(0) != '@' && !token.word.contains("http")){ // We can change the != "@" to things we want -> 'A'||'B'||'C'||'D'||'E'||'F'||'G'||'H'||'I'||'J'||'K'||'L'||'M'||'N'||'O'||'P'||'Q'||'R'||'S'||'T'||'U'||'V'||'X'||'W'||'Y'||'Z' This way we eliminate the issue you had with the language.
+//        if (options.containsKey(token)){
+//          options.replace(token, options.get(token), options.get(token)+1);
+//        }
+//        else{
+//          options.put(token, 1);
+//        }
+//      }
+//    }
+    return bigram;
   }
 }
