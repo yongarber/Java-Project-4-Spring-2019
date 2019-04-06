@@ -1,8 +1,7 @@
+import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.*;
 
 public class SloganMaker{
 
@@ -20,20 +19,23 @@ public class SloganMaker{
    * @param  acronym The acronym that will be used to create a slogan
    * @return         A list of Strings that satisfies the above constraints.
    */
-  public TreeMap<Token, String> getSlogan(String acronym){
+  public TreeMap<Token, ArrayList<Token>> getSlogan(String acronym){
    // TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
-    TreeMap<Token, String> bigram = new TreeMap<Token, String>();
+    TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
 
     String[] eachletter = acronym.split(""); // we will use it in step 5
 
     ArrayList<Token> Toke = new ArrayList<>(tokens);
-    for(int i=0; i <= tokens.size(); i++) {
+    for(int i=0; i < tokens.size()-1; i++) {
       int j = i + 1;
-      if (Toke.get(i).word.charAt(0) != '@' && !Toke.get(i).word.contains("http")) {
+      if (Toke.get(i).word.charAt(0) != '@' && Toke.get(i).word.charAt(0) != '!' && Toke.get(i).word.charAt(0) != '"' && Toke.get(i).word.charAt(0) != '$' && !Toke.get(i).word.contains("http")) {
+        ArrayList<Token> Val = new ArrayList<Token>();
         if (bigram.containsKey(Toke.get(i))) {
-          bigram.replace(Toke.get(i), bigram.get(Toke.get(i)), (Toke.get(i).word + Toke.get(j).word));
+          Val.add(Toke.get(j));
+          bigram.replace(Toke.get(i), bigram.get(Toke.get(i)), Val);
         } else {
-          bigram.put(Toke.get(i), Toke.get(j).word);
+          Val.add(Toke.get(j));
+          bigram.put(Toke.get(i), Val);
         }
       }
     }
