@@ -2,6 +2,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.*;
 
 public class SloganMaker{
 
@@ -21,9 +22,14 @@ public class SloganMaker{
    */
   public TreeMap<Token, Integer> getSlogan(String acronym){
     TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
+    TreeSet<String[]> bigram = new TreeSet<String[]>();
 
-    for (Token token: tokens){
-      if (token.word.charAt(0) != '@' && !token.word.contains("http")){
+    String[] eachletter = acronym.split(""); // we will use it in step 5
+    for(int i=0; i <= tokens.size(); i++){
+      int j = i+1;// continue from here for the bigram set...
+    }
+    for (Token token: tokens){ //Why do we need the .word. part in the lines under???
+      if (token.word.charAt(0) != '@' && !token.word.contains("http")){ // We can change the != "@" to things we want -> 'A'||'B'||'C'||'D'||'E'||'F'||'G'||'H'||'I'||'J'||'K'||'L'||'M'||'N'||'O'||'P'||'Q'||'R'||'S'||'T'||'U'||'V'||'X'||'W'||'Y'||'Z' This way we eliminate the issue you had with the language.
         if (options.containsKey(token)){
           options.replace(token, options.get(token), options.get(token)+1);
         }
