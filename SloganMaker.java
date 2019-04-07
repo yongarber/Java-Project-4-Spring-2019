@@ -45,6 +45,6 @@ public class SloganMaker{
         }
       }
     }
-    return bigram;
+  return bigram;
   }
 }
