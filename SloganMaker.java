@@ -2,6 +2,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.Map;
+import java.util.Iterator;
 
 public class SloganMaker{
 
@@ -25,30 +27,24 @@ public class SloganMaker{
 
     String[] eachletter = acronym.split(""); // we will use it in step 5
 
-    ArrayList<Token> Toke = new ArrayList<>(tokens);
+    ArrayList<Token> toke = new ArrayList<Token>(tokens);
     for(int i=0; i < tokens.size()-1; i++) {
       int j = i + 1;
-      if (Toke.get(i).word.charAt(0) != '@' && Toke.get(i).word.charAt(0) != '!' && Toke.get(i).word.charAt(0) != '"' && Toke.get(i).word.charAt(0) != '$' && !Toke.get(i).word.contains("http")) {
-        ArrayList<Token> Val = new ArrayList<Token>();
-        if (bigram.containsKey(Toke.get(i))) {
-          Val.add(Toke.get(j));
-          bigram.replace(Toke.get(i), bigram.get(Toke.get(i)), Val);
-        } else {
-          Val.add(Toke.get(j));
-          bigram.put(Toke.get(i), Val);
+      if (toke.get(i).word.charAt(0) != '@' && toke.get(i).word.charAt(0) != '!' && toke.get(i).word.charAt(0) != '"' && toke.get(i).word.charAt(0) != '$' && !toke.get(i).word.contains("http") && toke.get(i).word.charAt(0) != '#' && toke.get(i).word.charAt(0) != '?' && toke.get(i).word.charAt(0) != '.' && toke.get(i).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
+        ArrayList<Token> val = new ArrayList<Token>();
+        if (bigram.containsKey(toke.get(i))) {
+          if (toke.get(j).word.charAt(0) != '@' && toke.get(j).word.charAt(0) != '!' && toke.get(j).word.charAt(0) != '"' && toke.get(j).word.charAt(0) != '$' && !toke.get(j).word.contains("http") && toke.get(j).word.charAt(0) != '#' && toke.get(j).word.charAt(0) != '?' && toke.get(j).word.charAt(0) != '.' && toke.get(j).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
+            bigram.get(toke.get(i)).add((toke.get(j)));
+          }
+        } 
+        else {
+          if (toke.get(j).word.charAt(0) != '@' && toke.get(j).word.charAt(0) != '!' && toke.get(j).word.charAt(0) != '"' && toke.get(j).word.charAt(0) != '$' && !toke.get(j).word.contains("http") && toke.get(j).word.charAt(0) != '#' && toke.get(j).word.charAt(0) != '?' && toke.get(j).word.charAt(0) != '.' && toke.get(j).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
+            val.add(toke.get(j));
+            bigram.put(toke.get(i), val);
+          }
         }
       }
     }
-//    for (Token token: tokens){
-//      if (token.word.charAt(0) != '@' && !token.word.contains("http")){ // We can change the != "@" to things we want -> 'A'||'B'||'C'||'D'||'E'||'F'||'G'||'H'||'I'||'J'||'K'||'L'||'M'||'N'||'O'||'P'||'Q'||'R'||'S'||'T'||'U'||'V'||'X'||'W'||'Y'||'Z' This way we eliminate the issue you had with the language.
-//        if (options.containsKey(token)){
-//          options.replace(token, options.get(token), options.get(token)+1);
-//        }
-//        else{
-//          options.put(token, 1);
-//        }
-//      }
-//    }
     return bigram;
   }
 }
