@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.SortedSet;
+import java.util.Scanner;
 
 public class Test{
   public static void main(String[] args) throws Exception {
@@ -7,7 +8,10 @@ public class Test{
 //    tokens.forEach(e -> System.out.print(e + "\t"));
     System.out.println("Tokens parsed: " + tokens.size());
     SloganMaker maker = new SloganMaker(tokens);
-    System.out.println("Slogan: " + maker.getSlogan("map"));
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Enter an Acronym: ");
+    String s = scan.next();
+    System.out.println("Slogan: " + maker.getSlogan(s));
 
     //Prompt user for an acronym.
     //Report slogan found in text corpus bigrams, if one exists.
