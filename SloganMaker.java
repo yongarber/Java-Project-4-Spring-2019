@@ -8,6 +8,7 @@ import java.util.Iterator;
 public class SloganMaker{
 
   Collection<Token> tokens;
+  ArrayList<Token> acronym;
 
   public SloganMaker(Collection<Token> tokens){
     this.tokens = tokens;
@@ -21,12 +22,9 @@ public class SloganMaker{
    * @param  acronym The acronym that will be used to create a slogan
    * @return         A list of Strings that satisfies the above constraints.
    */
-  public TreeMap<Token, ArrayList<Token>> getSlogan(String acronym){
+  public TreeMap<Token, ArrayList<Token>> getBigram(){
    // TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
     TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
-
-    String[] eachletter = acronym.split(""); // we will use it in step 5
-
     ArrayList<Token> toke = new ArrayList<Token>(tokens);
     for(int i=0; i < tokens.size()-1; i++) {
       int j = i + 1;
@@ -46,5 +44,35 @@ public class SloganMaker{
       }
     }
   return bigram;
+  }
+
+  public void getSogan(String s){
+
+    String[] acronym = s.split("");
+    TreeMap<Token, ArrayList<Token>> bigram = getBigram();
+
+    if (acronym.length = 1){
+      for(Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
+        Token key = entry.getKey();
+        ArrayList<Token> value = entry.getValue();
+        if (key.word.charAt(0) == acronym[0].charAt(0)){
+          this.acronym.add(key);
+    }
+    for(Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
+      Token key = entry.getKey();
+      ArrayList<Token> value = entry.getValue();
+      if (key.word.charAt(0) == acronym[0].charAt(0)){
+        for (Token token: value){
+          if (token.word.charAt(0) == acronym[1].charAt(0)){
+            this.acronym.add(key);
+            this.acronym.add(token);
+            break;
+          }
+          else{
+            System.out.println("No acronyms found.");
+          }
+        }
+      }
+    }
   }
 }
