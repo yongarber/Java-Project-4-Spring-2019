@@ -9,6 +9,7 @@ public class SloganMaker{
 
   Collection<Token> tokens;
   ArrayList<Token> acronym;
+  ArrayList<Character> letters;
 
   public SloganMaker(Collection<Token> tokens){
     this.tokens = tokens;
@@ -25,6 +26,7 @@ public class SloganMaker{
   public TreeMap<Token, ArrayList<Token>> getBigram(){
    // TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
     TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
+
     ArrayList<Token> toke = new ArrayList<Token>(tokens);
     for(int i=0; i < tokens.size()-1; i++) {
       int j = i + 1;
@@ -46,30 +48,36 @@ public class SloganMaker{
   return bigram;
   }
 
-  public void getSogan(String s){
+  public void splitAcronym(String inputtedvalue){
 
-    String[] acronym = s.split("");
-    TreeMap<Token, ArrayList<Token>> bigram = getBigram();
+    for (int i = 0; i < inputtedvalue.length(); i++){
+      this.letters.add(inputtedvalue.charAt(i));
+    }
+  }
 
-    if (acronym.length = 1){
-      for(Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
+  public ArrayList<Token> getSlogan(String word){
+    TreeMap<Token, ArrayList<Token>> bigrams = getBigram();
+    if (this.acronym.size() == this.letters.size()){
+      return this.acronym;
+    }
+
+    else{
+      Character letter = this.letters.get(0);
+      for (Map.Entry<Token, ArrayList<Token>> entry: bigrams.entrySet()){
         Token key = entry.getKey();
         ArrayList<Token> value = entry.getValue();
-        if (key.word.charAt(0) == acronym[0].charAt(0)){
+        if (letter.equals(key.word.charAt(0))){
           this.acronym.add(key);
-    }
-    for(Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
-      Token key = entry.getKey();
-      ArrayList<Token> value = entry.getValue();
-      if (key.word.charAt(0) == acronym[0].charAt(0)){
-        for (Token token: value){
-          if (token.word.charAt(0) == acronym[1].charAt(0)){
-            this.acronym.add(key);
-            this.acronym.add(token);
-            break;
+          if (this.acronym.size() == this.letters.size()){
+            return this.acronym;
           }
-          else{
-            System.out.println("No acronyms found.");
+          else {
+            for (Token token: value){
+              if (token.word.charAt(0) == this.letters.get(1)){
+                this.acronym.add(token);
+                return getSlogan(token.word);
+              }
+            }
           }
         }
       }
