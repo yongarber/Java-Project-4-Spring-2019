@@ -48,24 +48,24 @@ public class SloganMaker {
 
   public void getSlogan(String s) {
 
-    String[] acronym = s.split("");
+    String[] Acronym = s.split("");
     TreeMap<Token, ArrayList<Token>> bigram = getBigram();
 
-    if (acronym.length == 1) {
+    if (Acronym.length == 1) {
       for (Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
         Token key = entry.getKey();
         //ArrayList<Token> value = entry.getValue(); do we need it?
-        if (key.word.charAt(0) == acronym[0].charAt(0)) {
+        if (key.word.charAt(0) == Acronym[0].charAt(0)) {
           this.acronym.add(key);
         }
       }
-    } else if (acronym.length == 2) {
+    } else if (Acronym.length == 2) {
       for (Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
         Token key = entry.getKey();
         ArrayList<Token> value = entry.getValue();
-        if (key.word.charAt(0) == acronym[0].charAt(0)) {
+        if (key.word.charAt(0) == Acronym[0].charAt(0)) {
           for (Token token : value) {
-            if (token.word.charAt(0) == acronym[1].charAt(0)) {
+            if (token.word.charAt(0) == Acronym[1].charAt(0)) {
               this.acronym.add(key);
               this.acronym.add(token);
               break;
@@ -73,22 +73,37 @@ public class SloganMaker {
           }
         }
       }
-    } else if (acronym.length > 2) {
-      for (int i = 1; i < acronym.length-1; i++) {
+    } else if (Acronym.length > 2) {
+      for (int i = 1; i < Acronym.length-1; i++) {
         for (Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
           Token key = entry.getKey();
           ArrayList<Token> value = entry.getValue();
-          if (key.word.charAt(0) == acronym[i].charAt(0) && key.word.equals(acronym[acronym.length-1])) {
+          if (key.word.charAt(0) == Acronym[0].charAt(0)) {
             for (Token token : value) {
-              if (token.word.charAt(0) == acronym[i+1].charAt(0)) {
+              if (token.word.charAt(0) == Acronym[1].charAt(0)) {
                 this.acronym.add(key);
                 this.acronym.add(token);
               }
             }
           }
         }
+        for (Map.Entry<Token, ArrayList<Token>> entry : bigram.entrySet()) {
+          Token key = entry.getKey();
+          ArrayList<Token> value = entry.getValue();
+          if (key.word.charAt(0) == Acronym[i].charAt(0) && key.word.equals(acronym.get(Acronym.length-1).word)) {
+            for (Token token : value) {
+              if (token.word.charAt(0) == Acronym[i+1].charAt(0)) {
+                this.acronym.add(key);
+                this.acronym.add(token);
+              }
+            }
+          }
+        }
+          // We need to add the case of didn't find and has to go backwards like in the queen
       }
-    } else {
+      System.out.print(acronym);
+    }
+    else {
       System.out.println("No acronyms found.");
     }
   }
