@@ -50,9 +50,13 @@ public class SloganMaker {
 
   public void splitAcronym(String inputtedvalue){
 
+    ArrayList<Character> characters = new ArrayList<Character>();
+
     for (int i = 0; i < inputtedvalue.length(); i++){
-      this.letters.add(inputtedvalue.charAt(i));
+      characters.add(inputtedvalue.charAt(i));
     }
+
+    this.letters = characters;
   }
 
   public void getSlogan(String word){
@@ -70,6 +74,7 @@ public class SloganMaker {
           this.acronym.add(key);
           if (this.acronym.size() == this.letters.size()){
             System.out.print(this.acronym);
+            break;
           }
           else {
             for (Token token: value){
@@ -83,6 +88,8 @@ public class SloganMaker {
       }
     }
   }
+}
+
 /**
   public void getSlogan(String s) {
 
@@ -146,4 +153,3 @@ public class SloganMaker {
     }
   }
 **/
-}
