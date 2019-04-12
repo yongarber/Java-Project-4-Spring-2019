@@ -13,6 +13,8 @@ public class SloganMaker {
 
   public SloganMaker(Collection<Token> tokens) {
     this.tokens = tokens;
+    this.acronym = new ArrayList<Token>();
+    this.letters = new ArrayList<Character>();
   }
 
 //  /**
@@ -61,8 +63,31 @@ public class SloganMaker {
 
   public void getSlogan(String word){
     TreeMap<Token, ArrayList<Token>> bigrams = getBigram();
-    if (this.acronym.size() == this.letters.size()){
+    /**if (this.acronym.size() == this.letters.size()){
       System.out.println(this.acronym);
+    }
+    **/
+
+    if (this.acronym == null){
+      for (Map.Entry<Token, ArrayList<Token>> entry: bigrams.entrySet()){
+        Token key = entry.getKey();
+        ArrayList<Token> value = entry.getValue();
+        if (this.letters.get(0).equals(key.word.charAt(0))){
+          this.acronym.add(key);
+          this.letters.remove(0);
+          if (this.letters.size() >= 1){
+            for (Token token: value){
+              if (this.letters.get(0).equals(token.word.charAt(0))){
+                this.acronym.add(token);
+                if (this.letters.size() > 0){
+                  getSlogan(token.word); 
+                }
+              }
+            }
+          }
+          break;
+        }
+      }
     }
 
     else{
