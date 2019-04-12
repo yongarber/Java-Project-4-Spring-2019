@@ -78,12 +78,11 @@ public class SloganMaker {
           this.acronym.add(matchingiteminlist(value, this.letters.get(1)));
           this.letters.remove(0);
           this.letters.remove(0);
-          System.out.println(this.acronym);
           break;
         }
       }
       if (this.letters.size() > 0){
-        System.out.println("Greater than 0");
+        getSlogan(this.acronym.get(this.acronym.size()-1));
       }
 
     }
