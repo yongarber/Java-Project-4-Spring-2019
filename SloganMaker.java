@@ -84,20 +84,27 @@ public class SloganMaker {
       if (this.letters.size() > 0){
         getSlogan(this.acronym.get(this.acronym.size()-1));
       }
+      else{
+        System.out.println(this.acronym);
+      }
 
     }
 
     else{
       Character letter = this.letters.get(0);
-      System.out.println(this.letters.get(0));
+      Token holder = new Token("Failed");
       if (bigrams.containsKey(token)){
         for (Token tokens: bigrams.get(token)){
-          if (tokens.word.charAt(0) == token.word.charAt(0)){
+          if (tokens.word.charAt(0) == letter){
             this.acronym.add(tokens);
             this.letters.remove(0);
-            getSlogan(tokens);
+            holder = tokens;
+            break;
           }
         }
+      }
+      if (!holder.word.equals("Failed")){
+        getSlogan(holder);
       }
     }
   }
