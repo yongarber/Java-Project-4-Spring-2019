@@ -20,6 +20,8 @@ public class TweetParser{
       //This is going to cause an error until you can call the correct method.
       twokens.forEach(e -> {
         Token nt = new Token(e);
+        Dictionary wording = new Dictionary();
+        if( wording.checkdic(nt.word)==true);
         tokens.add(nt);
       });
     }

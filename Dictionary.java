@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Collection;
 
 public class Dictionary{
-  public static ArrayList<String> parseWords(String filename) throws Exception {
-    ArrayList<String> words = new ArrayList<String>();
+  ArrayList<String> words = new ArrayList<String>();
+  public ArrayList<String> parseWords(String filename) throws Exception {
     Scanner scanner = new Scanner(new File(filename));
     String line = scanner.nextLine(); //the first line is field headers, we do not want that.
     while(scanner.hasNextLine()){
@@ -16,5 +16,8 @@ public class Dictionary{
     }
 
     return words;
+  }
+  public boolean checkdic(String word){
+    return words.contains(word);
   }
 }
