@@ -146,4 +146,9 @@ public class SloganMaker {
       return backtrack(this.acronym.get(this.acronym.size()-1), character);
     }
   }
+  public Map sortByValue(Map unsortedMap) {
+    Map sortedMap = new TreeMap(new ValueComparator(unsortedMap));
+    sortedMap.putAll(unsortedMap);
+    return sortedMap;
+  }
 }
