@@ -106,6 +106,12 @@ public class SloganMaker {
       if (!holder.word.equals("Failed")){
         getSlogan(holder);
       }
+      else if (backtrack(token, this.letters.get(0)).word != "Holder"){
+        Token backtracked = backtrack(token, this.letters.get(0));
+        this.acronym.add(backtrack(token, this.letters.get(0)));
+        this.letters.remove(0);
+        getSlogan(backtracked);
+      }
     }
   }
 
@@ -117,5 +123,26 @@ public class SloganMaker {
       }
     }
     return failed;
+  }
+
+  public Token backtrack(Token token, Character character){
+    Token backtrackkey = new Token("Holder");
+
+    for (Token item: tokens){
+      if (item.word.charAt(0) == character){
+        backtrackkey = item;
+        break;
+      }
+    }
+
+    if (this.acronym.indexOf(token) == 0){
+      return backtrackkey;
+    }
+    else if (backtrackkey.word != "Holder"){
+      return backtrackkey;
+    }
+    else{
+      return backtrack(this.acronym.get(this.acronym.indexOf(token)-1), character);
+    }
   }
 }
