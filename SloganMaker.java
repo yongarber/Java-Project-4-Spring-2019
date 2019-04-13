@@ -142,7 +142,8 @@ public class SloganMaker {
       return backtrackkey;
     }
     else{
-      return backtrack(this.acronym.get(this.acronym.indexOf(token)-1), character);
+      this.acronym.remove(token);
+      return backtrack(this.acronym.get(this.acronym.size()-1), character);
     }
   }
 }
