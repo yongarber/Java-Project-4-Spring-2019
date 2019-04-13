@@ -2,10 +2,10 @@ import java.util.*;
 import java.io.Serializable;
 
 public class ValueComparator implements Comparator {
-    Map map;
+    TreeMap map;
 
     public ValueComparator(Map map) {
-        this.map = map;
+        this.map = (TreeMap) map;
     }
 
     public int compare(Object keyA, Object keyB) {

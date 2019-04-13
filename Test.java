@@ -8,7 +8,6 @@ public class Test{
     ArrayList<Token> tokens = TweetParser.parseTweets("full-corpus.csv");
     System.out.println("Tokens parsed: " + tokens.size());
     SloganMaker maker = new SloganMaker(tokens);
-    maker.sortByValue(maker.getBigram());
     Scanner scan = new Scanner(System.in);
     System.out.println("Enter an Acronym: ");
     String s = scan.next();

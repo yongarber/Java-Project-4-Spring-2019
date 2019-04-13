@@ -63,7 +63,7 @@ public class SloganMaker {
 
   public void getSlogan(Token token){
 
-    TreeMap<Token, ArrayList<Token>> bigrams = getBigram();
+    TreeMap<Token, ArrayList<Token>> bigrams = (TreeMap<Token, ArrayList<Token>>) sortByValue(getBigram());
 
     if (this.letters.size() == 0){
       System.out.println(this.acronym);
