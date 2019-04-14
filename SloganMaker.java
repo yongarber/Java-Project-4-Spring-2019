@@ -5,6 +5,9 @@ import java.util.TreeMap;
 import java.util.Map;
 import java.util.Iterator;
 
+/**
+*@see SloganMaker this is the class which actually gets the slogan. It contains all of the methods which are needed ot ultimately create the acronym for an input.
+**/
 public class SloganMaker {
 
   Collection<Token> tokens;
@@ -17,15 +20,10 @@ public class SloganMaker {
     this.letters = new ArrayList<Character>();
   }
 
-//  /**
-//   * Get a slogan for a given acronym. The slogan must satisfy the following
-//   * constraints:
-//   * 1. The first character of each String corresponds with a character in the acronym passed as a parameter to the method in the same order.
-//   * 2. Adjacent tokens must be bigrams in the corpus of text used to generate the list of tokens.
-//   *
-//   * @param acronym The acronym that will be used to create a slogan
-//   * @return A list of Strings that satisfies the above constraints.
-//   */
+/**
+*@see getBigram() this method is a no-args method which takes in all of the tokens from the constructor of SloganMaker and creates a TreeMap of bigrams.
+*@see return returns the TreeMap called "bigrams"
+**/
   public TreeMap<Token, ArrayList<Token>> getBigram() {
     // TreeMap<Token, Integer> options = new TreeMap<Token, Integer>();
     TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
@@ -44,7 +42,11 @@ public class SloganMaker {
     }
     return bigram;
   }
-
+/**
+*@see splitAcronym this method takes in the input of the scanner from the Test and splits it into its individual characters so that each of the characters may be compared with the TreeMap of bigram.
+*@param inputtedvalue takes in a scanner from the Test class and splits it.
+*@see return returns the data field this.letters which is then equivalent to the splitted arraylist of characters which is the letters.
+**/
   public void splitAcronym(String inputtedvalue){
 
     ArrayList<Character> characters = new ArrayList<Character>();
@@ -56,6 +58,10 @@ public class SloganMaker {
     this.letters = characters;
   }
 
+/**
+*@see getSlogan recursive method which generates the slogan based on the bigram of tokens.
+*@param token takes in the previous token and checks whether the first letters of any of the elements in the corresponding ArrayList of tokens matches the letters of the next character in this.letters.
+**/
   public void getSlogan(Token token){
 
     TreeMap<Token, ArrayList<Token>> bigrams = (TreeMap<Token, ArrayList<Token>>) sortByValue(getBigram());
@@ -115,6 +121,11 @@ public class SloganMaker {
     }
   }
 
+/**
+*@see matchingiteminlist checks to see whether or not any of the first characters in the ArrayList of tokens matches the character of the this.letters list.
+*@param token takes in the current token for which the comparison is being made.
+*@param character takes in the current character for which the comparison needs to be fulfilled.
+**/
   public Token matchingiteminlist(ArrayList<Token> token, char character){
     Token failed = new Token("failed");
     for (Token item: token){
@@ -125,6 +136,11 @@ public class SloganMaker {
     return failed;
   }
 
+/**
+*@see backtrack this is the recusive backtrack method which checks previous tokens in the this.acronym if the current token does not have an element in its ArrayList whose first letter starts with the character in this.letters.
+*@param token takes in a token for recursion in backtracking
+*@param character takes in the current character to check whether or not the previous token has a token which matches the character.
+**/
   public Token backtrack(Token token, Character character){
     Token backtrackkey = new Token("Holder");
 
@@ -146,6 +162,11 @@ public class SloganMaker {
       return backtrack(this.acronym.get(this.acronym.size()-1), character);
     }
   }
+
+  /**
+  *@see sortByValue this method sorts the TreeMap by its ArrayList<Token> size in the value.
+  *@param unsortedmap takes in the TreeMap and sorts it.
+  **/
   public Map sortByValue(Map unsortedMap) {
     Map sortedMap = new TreeMap(new ValueComparator(unsortedMap));
     sortedMap.putAll(unsortedMap);
