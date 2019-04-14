@@ -63,7 +63,9 @@ public class SloganMaker {
     if (this.letters.size() == 0){
       System.out.println(this.acronym);
     }
-
+    else if (this.letters.size() <= 1 && this.acronym.size() == 0){
+      System.out.println("Please enter more than a single character.");
+    }
     else if (this.acronym.size() == 0){
       for (Map.Entry<Token, ArrayList<Token>> entry: bigrams.entrySet()){
         Token key = entry.getKey();
