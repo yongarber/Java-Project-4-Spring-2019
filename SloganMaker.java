@@ -76,11 +76,11 @@ public class SloganMaker {
           break;
         }
       }
-      if (this.letters.size() > 0){
+      if (this.letters.size() > 0 && this.acronym.size() == 2){
         getSlogan(this.acronym.get(this.acronym.size()-1));
       }
       else{
-        System.out.println(this.acronym);
+        System.out.println("No acronyms available!");
       }
 
     }
