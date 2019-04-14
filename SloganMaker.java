@@ -31,20 +31,15 @@ public class SloganMaker {
     TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
 
     ArrayList<Token> toke = new ArrayList<Token>(tokens);
-    for (int i = 0; i < tokens.size(); i++) {
+    for (int i = 0; i < tokens.size()-1; i++) {
       int j = i + 1;
-      if (toke.get(i).word.charAt(0) != '@' && toke.get(i).word.charAt(0) != '!' && toke.get(i).word.charAt(0) != '"' && toke.get(i).word.charAt(0) != '$' && !toke.get(i).word.contains("http") && toke.get(i).word.charAt(0) != '#' && toke.get(i).word.charAt(0) != '?' && toke.get(i).word.charAt(0) != '.' && toke.get(i).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
+      if (bigram.containsKey(toke.get(i))) {
+        bigram.get(toke.get(i)).add((toke.get(j)));
+      }
+      else {
         ArrayList<Token> val = new ArrayList<Token>();
-        if (bigram.containsKey(toke.get(i))) {
-          if (toke.get(j).word.charAt(0) != '@' && toke.get(j).word.charAt(0) != '!' && toke.get(j).word.charAt(0) != '"' && toke.get(j).word.charAt(0) != '$' && !toke.get(j).word.contains("http") && toke.get(j).word.charAt(0) != '#' && toke.get(j).word.charAt(0) != '?' && toke.get(j).word.charAt(0) != '.' && toke.get(j).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
-            bigram.get(toke.get(i)).add((toke.get(j)));
-          }
-        } else {
-          if (toke.get(j).word.charAt(0) != '@' && toke.get(j).word.charAt(0) != '!' && toke.get(j).word.charAt(0) != '"' && toke.get(j).word.charAt(0) != '$' && !toke.get(j).word.contains("http") && toke.get(j).word.charAt(0) != '#' && toke.get(j).word.charAt(0) != '?' && toke.get(j).word.charAt(0) != '.' && toke.get(j).word.charAt(0) != ',' && toke.get(i).word.charAt(0) != '-') {
-            val.add(toke.get(j));
-            bigram.put(toke.get(i), val);
-          }
-        }
+        val.add(toke.get(j));
+        bigram.put(toke.get(i), val);
       }
     }
     return bigram;
