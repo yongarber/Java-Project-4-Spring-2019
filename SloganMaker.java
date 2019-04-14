@@ -107,6 +107,9 @@ public class SloganMaker {
         this.letters.remove(0);
         getSlogan(backtracked);
       }
+      else{
+        System.out.println("No acronyms available!");
+      }
     }
   }
 
