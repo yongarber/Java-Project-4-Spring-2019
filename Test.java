@@ -7,7 +7,7 @@ public class Test{
     Token starter = new Token("soy");
     ArrayList<Token> tokens = TweetParser.parseTweets("full-corpus.csv");
     System.out.println("Tokens parsed: " + tokens.size());
-    SloganMaker maker = new SloganMaker(tokens);
+    SloganMaker maker = new SloganMaker(tokens);  // initiating sloganmaker
     Scanner scan = new Scanner(System.in);
     System.out.println("Enter an Acronym: ");
     String s = scan.next();
