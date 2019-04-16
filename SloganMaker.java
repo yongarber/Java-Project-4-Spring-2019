@@ -29,7 +29,7 @@ public class SloganMaker {
     TreeMap<Token, ArrayList<Token>> bigram = new TreeMap<Token, ArrayList<Token>>();
 
     ArrayList<Token> toke = new ArrayList<Token>(tokens);
-    for (int i = 0; i < tokens.size()-1; i++) {
+    for (int i = 0; i < tokens.size()-1; i++) { // the code checks if the key exists in the code and adds the key and the value
       int j = i + 1;
       if (bigram.containsKey(toke.get(i))) {
         bigram.get(toke.get(i)).add((toke.get(j)));
@@ -69,11 +69,11 @@ public class SloganMaker {
     if (this.letters.size() == 0){
       System.out.println(this.acronym);
     }
-    else if (this.letters.size() <= 1 && this.acronym.size() == 0){
+    else if (this.letters.size() <= 1 && this.acronym.size() == 0){ // taking care of a situation of one or zero characters.
       System.out.println("Please enter more than a single character.");
     }
     else if (this.acronym.size() == 0){
-      for (Map.Entry<Token, ArrayList<Token>> entry: bigrams.entrySet()){
+      for (Map.Entry<Token, ArrayList<Token>> entry: bigrams.entrySet()){ // the base case that do the checking for the key and value for each letter
         Token key = entry.getKey();
         ArrayList<Token> value = entry.getValue();
         if (this.letters.get(0) == key.word.charAt(0) && matchingiteminlist(value, this.letters.get(1)).word != "failed"){
@@ -85,7 +85,7 @@ public class SloganMaker {
         }
       }
       if (this.letters.size() > 0 && this.acronym.size() == 2){
-        getSlogan(this.acronym.get(this.acronym.size()-1));
+        getSlogan(this.acronym.get(this.acronym.size()-1)); // the recursive part of the method
       }
       else{
         System.out.println("No acronyms available!");
@@ -94,7 +94,7 @@ public class SloganMaker {
     }
 
     else{
-      Character letter = this.letters.get(0);
+      Character letter = this.letters.get(0); // line 97 to line 119 are giving the backtracking for the recursive method
       Token holder = new Token("Failed");
       if (bigrams.containsKey(token)){
         for (Token tokens: bigrams.get(token)){

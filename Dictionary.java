@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Collection;
 import java.util.HashSet;
 /**
-*@see dictionary class which contains all of the english valid words.
+*@see dictionary class which was in the directions of step 9.
 **/
 public class Dictionary{
   HashSet<String> words = new HashSet<String>();
@@ -15,7 +15,7 @@ public class Dictionary{
   **/
   public HashSet<String> parseWords(String filename) throws Exception {
     Scanner scanner = new Scanner(new File(filename));
-    String line = scanner.nextLine(); //the first line is field headers, we do not want that.
+    String line = scanner.nextLine();
     while(scanner.hasNextLine()){
       String word = scanner.nextLine();
       

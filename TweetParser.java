@@ -20,13 +20,13 @@ public class TweetParser{
     Dictionary dict = new Dictionary();
     HashSet<String> validinput = dict.parseWords("words.txt");
     Scanner scanner = new Scanner(new File(filename), "UTF-8");
-    String line = scanner.nextLine(); //the first line is field headers, we do not want that.
+    String line = scanner.nextLine();
     Token prevToken = null;
     while(scanner.hasNextLine()){
       line = scanner.nextLine();
       String[] fields = line.split("\",\"");
 
-      List<String> twokens = twokenizer.twokenize(fields[4]); //You need to call the correct method here.
+      List<String> twokens = twokenizer.twokenize(fields[4]); // here we call the fourth field.
 
      
       twokens.forEach(e -> {

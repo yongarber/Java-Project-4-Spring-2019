@@ -10,7 +10,7 @@ public class ValueComparator implements Comparator {
         this.map = (TreeMap) map;
     }
 // Compares object keyA and keyB based on ArrayList<Token> size
-    public int compare(Object keyA, Object keyB) {
+    public int compare(Object keyA, Object keyB) { // this class compares and sort the treemap based on the length of the arraylist in the value.
         ArrayList<Token> valueA = (ArrayList<Token>) map.get(keyA);
         ArrayList<Token> valueB = (ArrayList<Token>) map.get(keyB);
         Integer valASize = valueA.size();
