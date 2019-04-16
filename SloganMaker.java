@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Iterator;
 
 /**
-*@see SloganMaker this is the class which actually gets the slogan. It contains all of the methods which are needed ot ultimately create the acronym for an input.
+*@see SloganMaker this is the class which gets the slogan. It contains all of the methods which are needed ot ultimately create the acronym for an input.
 **/
 public class SloganMaker {
 
@@ -21,7 +21,7 @@ public class SloganMaker {
   }
 
 /**
-*@see getBigram() this method is a no-args method which takes in all of the tokens from the constructor of SloganMaker and creates a TreeMap of bigrams.
+*@see getBigram() this method is a no-args method which takes in all of the tokens from the tokens data field of the SloganMaker. From here, the bigrams for each of the tokens is created.
 *@see return returns the TreeMap called "bigrams"
 **/
   public TreeMap<Token, ArrayList<Token>> getBigram() {
@@ -43,9 +43,9 @@ public class SloganMaker {
     return bigram;
   }
 /**
-*@see splitAcronym this method takes in the input of the scanner from the Test and splits it into its individual characters so that each of the characters may be compared with the TreeMap of bigram.
+*@see splitAcronym this method takes in the input of the scanner from the Test and splits it into its individual characters so that the SloganMaker can find an appropriate acronym for each of the characters.
 *@param inputtedvalue takes in a scanner from the Test class and splits it.
-*@see return returns the data field this.letters which is then equivalent to the splitted arraylist of characters which is the letters.
+*@see return returns the data field this.letters whichc contains all of the letters of the input.
 **/
   public void splitAcronym(String inputtedvalue){
 
@@ -59,8 +59,9 @@ public class SloganMaker {
   }
 
 /**
-*@see getSlogan recursive method which generates the slogan based on the bigram of tokens.
-*@param token takes in the previous token and checks whether the first letters of any of the elements in the corresponding ArrayList of tokens matches the letters of the next character in this.letters.
+*@see getSlogan recursive method which generates the acronym based on the bigram of tokens.
+*@param token this is the parameter for the method, getSlogan(). When begining, it uses a bogus token which is then quickly turned into the relevant token which corresponds to a specific character of the original inputted value.
+*             from there, the method uses the most current token found for the character in the input and searches to see whether or not a token with the same first letter as the next character exists.
 **/
   public void getSlogan(Token token){
 
@@ -122,7 +123,8 @@ public class SloganMaker {
   }
 
 /**
-*@see matchingiteminlist checks to see whether or not any of the first characters in the ArrayList of tokens matches the character of the this.letters list.
+*@see matchingiteminlist this method checks to see whether any of the tokens in the arraylist of tokens for the current token has the same first letter as the second character of the input.
+*                        this method is invoked only once at the beginning to make sure that the first two characters of the input have a corresponding token.
 *@param token takes in the current token for which the comparison is being made.
 *@param character takes in the current character for which the comparison needs to be fulfilled.
 **/
@@ -137,7 +139,8 @@ public class SloganMaker {
   }
 
 /**
-*@see backtrack this is the recusive backtrack method which checks previous tokens in the this.acronym if the current token does not have an element in its ArrayList whose first letter starts with the character in this.letters.
+*@see backtrack this is the recusive backtrack method. If a token for the next character is not found within the arraylist of token for the current token, then this method backtracks
+*               to the previous tokens in chronological order to see if they have an appropriate token for the current character.
 *@param token takes in a token for recursion in backtracking
 *@param character takes in the current character to check whether or not the previous token has a token which matches the character.
 **/
@@ -164,7 +167,7 @@ public class SloganMaker {
   }
 
   /**
-  *@see sortByValue this method sorts the TreeMap by its ArrayList<Token> size in the value.
+  *@see sortByValue this method sorts the TreeMap by the size of the ArrayList of teach of its tokens.
   *@param unsortedmap takes in the TreeMap and sorts it.
   **/
   public Map sortByValue(Map unsortedMap) {

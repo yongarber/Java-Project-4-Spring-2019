@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 /**
 *@see Token this is the class which creates the token object
+*@see word this is the string which contains the string of the actual word associated with each token.
 **/
 public class Token implements Comparable<Token>{
   public String word;
   public ArrayList<Token> grams;
-// Constructor for token
+
+/**
+*@see Token this is the constructor for the token object.
+*@param word a string is requried to make each of the Token objects. These are all created in the TweetParser class.
+**/
   public Token(String word){
     this.word = word;
     this.grams = new ArrayList<Token>();
