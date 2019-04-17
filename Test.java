@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Test{
   public static void main(String[] args) throws Exception {
-  	//This is just a starter token. The way we implemented everything, we just need a stoken to start the getSlogan function, but this has nothing to do with the final product.
+  	//This is just a starter token. The way we implemented everything, we just need a sloken to start the getSlogan function, but this has nothing to do with the final product.
     Token starter = new Token("soy");
     //Creates the ArrayList<Tokens> from the TweetParser class. This is NOT the bigram list. The actual bigram TreeMap is created and sorted during the getSlogan() method of the 
     //SloganMaker class.
