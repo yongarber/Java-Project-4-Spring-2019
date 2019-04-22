@@ -42,6 +42,7 @@ public class SloganMaker {
     }
     return bigram;
   }
+
 /**
 *@see splitAcronym this method takes in the input of the scanner from the Test and splits it into its individual characters so that the SloganMaker can find an appropriate acronym for each of the characters.
 *@param inputtedvalue takes in a scanner from the Test class and splits it.
@@ -91,11 +92,15 @@ public class SloganMaker {
       if (this.letters.size() > 0 && this.acronym.size() == 2){
         getSlogan(this.acronym.get(this.acronym.size()-1)); // the recursive part of the method
       }
-      else{
+      else if (this.acronym.size() == 2 && this.letters.size() == 0){
         System.out.println("The acronym for your two lettered word is: ");
+        System.out.println(this.acronym.size());
         for (Token word: this.acronym){
           System.out.println(word);
         }
+      }
+      else{
+        System.out.println("There are no available acronyms");
       }
 
     }
@@ -152,8 +157,9 @@ public class SloganMaker {
 **/
   public Token backtrack(Token token, Character character){
     Token backtrackkey = new Token("Holder");
+    TreeMap<Token, ArrayList<Token>> map = getBigram();
 
-    for (Token item: tokens){
+    for (Token item: map.get(token)){
       if (item.word.charAt(0) == character){
         backtrackkey = item;
         break;
@@ -167,8 +173,7 @@ public class SloganMaker {
       return backtrackkey;
     }
     else{
-      this.acronym.remove(token);
-      return backtrack(this.acronym.get(this.acronym.size()-1), character);
+      return backtrack(this.acronym.get(this.acronym.indexOf(token)-1), character);
     }
   }
 
