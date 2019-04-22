@@ -18,6 +18,6 @@ public class Test{
     maker.getSlogan(starter); // running the recursive code
     //Prompt user for an acronym.
     //Report slogan found in text corpus bigrams, if one exists.
-    //Prompt user to keep going or quit.
+    //Prompt user to keep going or quit.f
   }
 }
