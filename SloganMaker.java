@@ -157,9 +157,8 @@ public class SloganMaker {
 **/
   public Token backtrack(Token token, Character character){
     Token backtrackkey = new Token("Holder");
-    TreeMap<Token, ArrayList<Token>> map = getBigram();
 
-    for (Token item: map.get(token)){
+    for (Token item: tokens){
       if (item.word.charAt(0) == character){
         backtrackkey = item;
         break;
@@ -173,7 +172,8 @@ public class SloganMaker {
       return backtrackkey;
     }
     else{
-      return backtrack(this.acronym.get(this.acronym.indexOf(token)-1), character);
+      this.acronym.remove(token);
+      return backtrack(this.acronym.get(this.acronym.size()-1), character);
     }
   }
 
