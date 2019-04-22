@@ -68,7 +68,10 @@ public class SloganMaker {
     TreeMap<Token, ArrayList<Token>> bigrams = (TreeMap<Token, ArrayList<Token>>) sortByValue(getBigram());
 
     if (this.letters.size() == 0){
-      System.out.println(this.acronym);
+      System.out.println("The acronym for your inputted word is:");
+      for (Token word: this.acronym){
+        System.out.println(word);
+      }
     }
     else if (this.letters.size() <= 1 && this.acronym.size() == 0){ // taking care of a situation of one or zero characters.
       System.out.println("Please enter more than a single character.");
@@ -89,7 +92,10 @@ public class SloganMaker {
         getSlogan(this.acronym.get(this.acronym.size()-1)); // the recursive part of the method
       }
       else{
-        System.out.println("No acronyms available!");
+        System.out.println("The acronym for your two lettered word is: ");
+        for (Token word: this.acronym){
+          System.out.println(word);
+        }
       }
 
     }
