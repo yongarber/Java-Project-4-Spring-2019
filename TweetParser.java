@@ -32,7 +32,7 @@ public class TweetParser{
       twokens.forEach(e -> {
         Token nt = new Token(e);
         //Checking to see whether or not the token word is in the dictionary.
-        if (validinput.contains(nt.word)){
+        if (validinput.contains(nt.word) && nt.word.length() > 1 && nt.word.length() > 1){
           tokens.add(nt);
         }
       });
